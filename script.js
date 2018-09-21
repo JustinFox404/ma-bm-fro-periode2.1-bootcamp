@@ -1,4 +1,10 @@
 "use strict";
+document.addEventListener("DOMContentLoaded", function () {
+    setInterval(function () {
+        updateColor();
+        console.log("update");
+    }, 1200);
+});
 function setContent(json) {
     document.getElementById("titel").innerText = json['titel'];
     document.getElementById("opdracht").innerText = json['opdracht'];
@@ -7,6 +13,16 @@ function setContent(json) {
     document.getElementById("uitwerking").innerText = json['uitwerking'];
     document.getElementById("img").src = json['img'];
     updateYears();
+}
+function random(min, max) {return Math.floor((Math.random() * max) + min);}
+
+function updateColor() {
+    const a = document.getElementsByClassName("color");
+    const l = a.length;
+    for(let i = 0; i < l; i++) {
+        var el = a[i];
+        el.style.background = 'rgb(' + [random(1,255),random(1,255),random(1,255)].join(',') + ')';
+    }
 }
 function updateNames(name) {
     const a = document.getElementsByClassName("name");
